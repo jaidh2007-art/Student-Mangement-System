@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Management System</h1>
+            <nav>
+                <a href="{{ url_for('index') }}" class="active">Home</a>
+                <a href="{{ url_for('students') }}">View Students</a>
+                <a href="{{ url_for('add_student') }}">Add Student</a>
+            </nav>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="alerts">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <main class="hero">
+            <h2>Welcome to the Portal</h2>
+            <p>Easily manage student records, track progress, and update student profiles in real-time.</p>
+            <div class="actions">
+                <a href="{{ url_for('students') }}" class="btn primary">View All Students</a>
+                <a href="{{ url_for('add_student') }}" class="btn secondary">Add New Student</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
